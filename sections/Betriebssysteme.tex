@@ -365,5 +365,75 @@ Das Priority Inheritance Protocol ist ein Protokoll, welches die Priorität eine
 Im Ceiling Priority Protocol ist die Priorität jedes Tasks bekannt. Ebenfalls sind alle Ressourcen eines Tasks bekannt und somit die höchstmögliche Priorität pro Ressource. Die Tasks werden mit diesem Protokoll automatisch auf die höchstmögliche Priorität angehoben. Deadlocks können mit diesem Protokoll nie auftreten.
 
 \subsection{Real-Time Operating System (RTOS)}
+Die meisten RTOS beeinhalten folgende Komponenten:
+\begin{itemize}
+    \item Scheduler
+    \begin{itemize}
+        \item Wird von jedem Kernel beeinhaltet und folgt einem Algorithmus, welcher definiert welcher Task wann ausgeführt wird.
+        \item Einige Beispiele für Algorithmen sind Round Robin und Preemptive Scheduling.
+    \end{itemize}
+    \item Objekt
+    \begin{itemize}
+        \item Objekte sind spezielle Kernel Konstrukte, welche helfen Anwendungen für Echtzeit Systeme zu erstellen.
+        \item Einige Beispiele: Tasks, Semaphoren und Nachrichten.
+    \end{itemize}
+    \item Service
+    \begin{itemize}
+        \item Service sind Operationen, welche vom Kernel an Objekten durchgeführt werden.
+        \item Einige Beispiele: Timing, Interrupt Handling und Ressourcen Management.
+    \end{itemize}
+\end{itemize}
 
 \subsection{FreeRTOS}
+\subsubsection{Vorteile}
+\begin{itemize}
+    \item Die Scheduling Variante kann gewählt werden: Preemptive oder Cooperative.
+    \item Enthält einen Lowpowermode.
+    \item Kleine Codegrösse, braucht im Schnitt 4K bis 9K.
+    \item Support für über 30 verschiedene System Architekturen.
+    \item Sehr gut portierbar, da der Code hauptsächlich in C geschrieben ist.
+\end{itemize}
+
+\subsubsection{Unterstütze Objekte}
+Folgende Objekte werden unterstützt:
+\begin{multicols}{2}
+    \begin{itemize}
+        \item Tasks
+        \item Semaphoren (Binary, Counting und Recursive)
+        \item Mutexes
+        \item Queues
+        \item Event Groups
+        \item Queue Sets
+        \item Software Timers
+    \end{itemize}
+\end{multicols}
+RTOS Objekte können dynamisch oder in statisch alloziertem RAM angelegt werden.
+
+\subsubsection{Task States}
+\includegraphics[width=0.4\textwidth]{images/Betriebssysteme/freertos_taskstates.png}\\
+\textbf{Beispiel:}
+\lstinputlisting[language=C]{code/freertos_taskmanagement.c}
+
+\subsubsection{Semaphoren}
+\textbf{Binary Semaphoren:} werden gebraucht für Mutual Exclusion und Synchronisationszwecke. \\
+\textbf{Counting Semaphoren:} werden gebraucht für Zähl Events und Ressourcen Management. \\
+\textbf{Mutex:} sind binäre Semaphoren, welche ein Prioritäts-Erbungs-System implementiert haben.
+
+\subsubsection{Queues}
+Queues sind die primäre Form von Kommunikation zwischen Tasks. Nachrichten können zwischen Tasks und zwischen Interrupts und Tasks gesendet werden. In den meisten Fällen sind Queues als FIFO ausgebaut. \\ \\
+\textbf{Beispiel:}
+\lstinputlisting[language=C]{code/freertos_queues.c}
+
+\subsubsection{Event Groups}
+Eine Event Gruppe ist ein zusammengehörende Gruppe von Event Bits. Individuelle Event bits in einer Event Gruppe werden über die Bit Nummer angesprochen.
+
+\subsubsection{Queue Sets}
+Queue Sets stellen einen Mechanismus zur Verfügung, welcher es einem RTOS Task erlaubt aktuelle Lesezugriffe auf mehrere Queues oder Semaphoren gleichzeitig zu blockieren. Ein Queue Set muss explizit erstellt werden. Anschliessend können Queues und Semaphoren zu einem Queue Set hinzugefügt werden. Die Queues und Semaphoren müssen jedoch leer sein beim Zeitpunkt des hinzufügens. \\ \\
+\textbf{Beispiel:}
+\lstinputlisting[language=C]{code/freertos_queueset.c}
+
+\subsubsection{Software Timer}
+Ein Software Timer erlaubt es eine Funktion zu einer gegebenen Zeit in der Zukunft auszuführen. Die Funktion welche vom Timer ausgeführt wird, heisst Callback Funktion. Die Zeit zwischen dem starten des Timers und dem ausführen der Callback Funktion wird Timer Periode genannt. \\ \\
+\textbf{Beispiel:}\\
+Timer 1: One-Shot Timer, Timer 2: Auto-Reload Timer \\
+\includegraphics[width=0.6\textwidth]{images/Betriebssysteme/freertos_timer.png}
