@@ -45,6 +45,7 @@ Dabei unterscheidet man zwischen dem \textbf{Operationsprinzip} (funktionelles V
 	
 \end{figure}
 
+\clearpage
 \textbf{Merkmale MIMD Rechnern}
 
 \begin{itemize}[noitemsep,topsep=0pt]
@@ -60,7 +61,7 @@ Dabei unterscheidet man zwischen dem \textbf{Operationsprinzip} (funktionelles V
 	
 	\item Anzahl der Prozessoren
 \end{itemize}
-
+\vspace{-0.5cm}
 \subsection{Amdahl's Law}
 %{\large{\textbf{Amdahl's Law}}}\\
 
@@ -127,7 +128,7 @@ Bei diesen will man möglichst kurze und effizienze (1 Clock per Instruction CPI
 	\end{tabular} 
 
 \end{table}
-
+\vspace{-0.4cm}
 Eine allgemein anerkannte, einfache Definition für RISC-Prozessoren existiert nicht.
 Wenn der Prozessor $5$ der $8$ RISC-Merkmalen erfüllt, kann man sagen, dass es sich um einen RISC-Prozessor handelt. 
 
@@ -149,7 +150,7 @@ Die Anzahl Pipline-Stufen variieren je nach Prozessortyp, oftmals sind es die f�
 	\end{minipage}
 	
 \end{figure}
-
+\vspace{-0.5cm}
 Die Geschwindigkeit wird durch folgende Punkte limittiert:
 \begin{itemize}[noitemsep,topsep=0pt]
 	\item Buszugriffzeiten
@@ -175,13 +176,12 @@ Es resultiert ein Pipeline Stall wenn ein nachfolgebefehl das Resultat vom vorg�
 Resultate werden einer nachfolgenden Pipelinestufe direkt bereitgestellt, noch bevor diese an die endgültige Stelle geschrieben werden.
 Neben einem Register wird der berechnete Wert gerade wieder der ALU zur Verfügung gestellt.
 Somit kann direkt Execute ausgeführt werden.
-
+\vspace{-0.5cm}
 \subsubsection{Kontrollflusshazards}
 Verzweigungs- (Branch-) und Sprung- (Jump-) Befehle beeinflussen den sequentiellen Programmablauf.
 Je nach dem muss die Pipeline geleert (Pipeline-Flush) werden, was das Programm wiederum langsam macht.
 Man versucht deshalb entweder das Sprungziel parallel in einer Additionseinheit zu berechnen \textbf{(Look-Ahead Resolution)}, Wartezyklen zu vermeiden (Delay-Slot, allenfalls NOP) oder eine Verzweigungsvorhersage zu machen.
 
-\begin{figure}[htbp]
 	
 	\begin{minipage}{0.55\textwidth}
 		\begin{itemize}[noitemsep,topsep=0pt]
@@ -196,17 +196,14 @@ Man versucht deshalb entweder das Sprungziel parallel in einer Additionseinheit 
 			 Branch History Register (BHR)\\
 			 Pattern History Table (PHT)
 
-		\end{itemize}
-			
-		
-	\end{minipage}
-	\hfill		
+		\end{itemize}		
+	\end{minipage}	
 	\begin{minipage}{0.4\textwidth} 
 		\includegraphics[width=\textwidth]{images/Rechnerarchitekturen/Sprungvorhersage.PNG}
 	\end{minipage}
 	
-\end{figure}
 
+\clearpage
 \subsection{Superskalare Prozessoren}
 \textbf{Skalare Architekturen:}\\
 Pro Taktzyklus wird ein Befehl ausgeführt (RISC Architekturen)
@@ -227,9 +224,8 @@ Befehle werden gleichzeitig abgearbeitet
 
 \textbf{Superpipeline:}\\
 Befehle werden in feiner granulierte Elemente aufgeteilt. Dadurch wird die Hardware grösser, da mehr Transferregister benötigt werden.\newline
-
 Ebenfalls gibt es diverse Mischvarianten.
-
+\vspace{-0.5cm}
 \subsection{Very Long Instruction Word- (VLIW-) Prozessoren}
 VLIW Prozessoren können als Variation der superskalaren Prozessoren gesehen werden
 
@@ -249,9 +245,9 @@ VLIW Prozessoren können als Variation der superskalaren Prozessoren gesehen wer
 	\end{minipage}
 	
 \end{figure}
-
+\vspace{-1cm}
 \subsection{Explicit Parallel Instruction Computing- (EPIC-) Architektur}
- 
+\vspace{-0.5cm}
 \begin{figure}[htbp]
 	
 	\begin{minipage}{0.55\textwidth}
@@ -265,14 +261,16 @@ Die EPIC-Architektur ist ein  Spezialfall der VILW-Konzepts. Bei der Programmier
 	
 \end{figure}
 %\todo{Ev ergänzen oder anders. keine ahnung}
-
+\vspace{-1cm}
 \subsection{Leistungsbewertung von Rechnern}
 Das am meisten interessierende Leistungsmerkmal eines Einzel-Prozessors ist die für die Ausführung eines bestimmten Programms benötigte Zeit:
 \begin{equation*}
-	t_A = n_I \cdot c_I \cdot t_I = n_I \cdot c_I \cdot \dfrac{1}{f_{clk}}
+	t_A = n_I \cdot c_I \cdot t_I = n_I \cdot c_I \cdot \dfrac{1}{f_{clk}} 
 \end{equation*}
-Wobei $n_I$ die Anzahl der ausgeführten Instruktionen, $c_I$ die mittlere Anzahl benötigte Taktzyklen pro Instruktion (CPI) und $t_I$ die Zeit pro Taktperiode ist.
 
-\begin{figure}[ht]
-	\includegraphics[width=8 cm]{images/Rechnerarchitekturen/Prozessorleistung.PNG}
-\end{figure}
+\begin{minipage}{0.5\linewidth}
+Wobei $n_I$ die Anzahl der ausgeführten Instruktionen, $c_I$ die mittlere Anzahl benötigte Taktzyklen pro Instruktion (CPI) und $t_I$ die Zeit pro Taktperiode ist.
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+	\includegraphics[width=0.9\linewidth]{images/Rechnerarchitekturen/Prozessorleistung.PNG}
+\end{minipage}

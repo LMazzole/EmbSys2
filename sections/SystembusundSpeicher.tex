@@ -95,16 +95,7 @@ Während des DMA (Direkt Memory Acces) übernimmt ein anderer Bus-Teilnehmer die
 \end{minipage}
 
 \subsection{Adresscodierung}
-\begin{minipage}{0.5\linewidth}
-    \includegraphics[width=\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysAdressBus}
-\end{minipage}
-\begin{minipage}{0.5\linewidth}
-    \begin{tabular}{|l|l|l|}
-        \hline
-        Bank-Nr         & Chip-Nr       & Interne Adresse auf Chip\\
-        \hline
-        28 \hfill 27    & 26 \hfill 22  & 21 \hfill 0\\
-    \end{tabular}
+\begin{minipage}{0.6\linewidth}
     \begin{itemize}
         \item Wie gross ist die Speicherkapazität jedes Chips?
         \subitem $ 2^{22}  = 4MB$
@@ -121,6 +112,16 @@ Während des DMA (Direkt Memory Acces) übernimmt ein anderer Bus-Teilnehmer die
         \item Welcher Adressbereich belegt Chip 13 in Speicherbank 1?
         \subitem \textbf{TODO} %TODO
     \end{itemize}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+        \begin{tabular}{|l|l|l|}
+        \hline
+        Bank-Nr         & Chip-Nr       & Interne Adresse auf Chip\\
+        \hline
+        28 \hfill 27    & 26 \hfill 22  & 21 \hfill 0\\
+        \hline
+    \end{tabular}
+    \includegraphics[width=\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysAdressBus}
 \end{minipage}
 
 \subsubsection{Speichermodell und Adressraum}
@@ -145,16 +146,19 @@ Während des DMA (Direkt Memory Acces) übernimmt ein anderer Bus-Teilnehmer die
 
 \subsection{Speichersysteme}
 \subsubsection{Direkt adressierbare Speicher}
-Durch anlegen einer Adresse wird direkt die gewünschte Speicherstelle angesprochen.\newline
-Die angesprochene Speicherstelle ist meistens 1 Byte gross.\newline
-Es werden 2 Hauptgruppen unterschieden
-\begin{itemize}
-    \item RAM
-    \item ROM
-\end{itemize}
+\begin{minipage}{0.5\linewidth}
+    Durch anlegen einer Adresse wird direkt die gewünschte Speicherstelle angesprochen.
+    Die angesprochene Speicherstelle ist meistens 1 Byte gross.\newline
+    Es werden 2 Hauptgruppen unterschieden
+    \begin{itemize}
+        \item RAM
+        \item ROM
+    \end{itemize}
+\end{minipage}
 \begin{minipage}{0.5\linewidth}
     \includegraphics[width=\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysDirectMem}
 \end{minipage}\newline
+
 \textbf{Prüfungsfrage}\newline
 Weshalb wird bei einem Bit-Organisierten Speicher bei gleichzeitigem Lesn (OE oder RD) und Schreiben (WR) aktiv, schreiben priorisiert?\newline
 Weil schreiben hochohmig bedeutet.
@@ -169,82 +173,91 @@ Weil schreiben hochohmig bedeutet.
     \item uni oder bidirektional
 \end{itemize}
 \begin{minipage}{0.5\linewidth}
-    \includegraphics[width=0.5\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysMehrPort}
+    \includegraphics[width=0.9\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysMehrPort}
 \end{minipage}\newline
-\textbf{Bauform und Ausführung}
-\begin{itemize}
-    \item Dualport-RAM (DPRAM)
-    \subitem zur Kopplung mehrere Prozessoren oder Peripherien
-    \item Dualport-Speichersysteme
-    \subitem mittels einer Steuerlogik erweitertes Speichersystem
-    \item Video-Ram (VRAM)
-    \subitem unidirektionlaer Dualspeicher in Grafiksystemen
-    \item Multiport-Bauelemente
-    \subitem mehr als 2 Zugriffsports
-\end{itemize}
-\textbf{Datenkonsistenz}\newline
-Lesen/Schreiben an den Bus-Ports muss koordiniert werden. HW-Semaphoren betätigt durch Software.
+\begin{minipage}{0.6\linewidth}
+    \textbf{Bauform und Ausführung}
+    \begin{itemize}
+        \item Dualport-RAM (DPRAM)
+        \subitem zur Kopplung mehrere Prozessoren oder Peripherien
+        \item Dualport-Speichersysteme
+        \subitem mittels einer Steuerlogik erweitertes Speichersystem
+        \item Video-Ram (VRAM)
+        \subitem unidirektionlaer Dualspeicher in Grafiksystemen
+        \item Multiport-Bauelemente
+        \subitem mehr als 2 Zugriffsports
+    \end{itemize}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+    \textbf{Datenkonsistenz}\newline
+    Lesen/Schreiben an den Bus-Ports muss koordiniert werden. HW-Semaphoren betätigt durch Software.
+\end{minipage}
 
-\subsubsection{Schieberegister}
-\begin{itemize}
-    \item Umwandlung von seriellen und parallelen Datenströmen
-    \item Peripherie-Schnittstellen
-    \subitem A/D-Wandler
-    \subitem Lan-Schnittstelle
-    \subitem Peripheriebuse (USB)
-    \subitem serielle Schnittstelle (RS-232,SPI)
-    \item Links/Rechtsschieben
-\end{itemize}
-\begin{minipage}{0.5\linewidth}
-    \includegraphics[width=0.5\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysSchiebReg}
-\end{minipage}\newline
+\begin{multicols}{3}
+\begin{minipage}{\linewidth}
+    \subsubsection{Schieberegister}
+        \includegraphics[height=2.5cm]{images/SystembusSpeicherSpeichersystem/SpeicherSysSchiebReg}
+    \begin{itemize}
+        \item Umwandlung von seriellen und parallelen Datenströmen
+        \item Peripherie-Schnittstellen
+        \subitem A/D-Wandler
+        \subitem Lan-Schnittstelle
+        \subitem Peripheriebuse (USB)
+        \subitem serielle Schnittstelle (RS-232,SPI)
+        \item Links/Rechtsschieben
+    \end{itemize}
+\end{minipage}
 
-\subsubsection{FIFO (First in First out)}
-\begin{itemize}
-    \item Ein-/Ausgabebuffer
-    \subitem Tastatur,Drucker,Lan-Schnittstelle
-    \subitem Ringbuffer
-\end{itemize}
-\begin{minipage}{0.5\linewidth}
-    \includegraphics[width=0.5\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysFIFO}
-\end{minipage}\newline
+\begin{minipage}{\linewidth}
+    \subsubsection{FIFO (First in First out)}
+    \includegraphics[height=2.5cm]{images/SystembusSpeicherSpeichersystem/SpeicherSysFIFO}
+    \begin{itemize}
+        \item Ein-/Ausgabebuffer
+        \subitem Tastatur,Drucker,Lan-Schnittstelle
+        \subitem Ringbuffer
+    \end{itemize}
+\end{minipage}
 
-\subsubsection{LIFO (Last in First out)}
-\begin{itemize}
-    \item für Stack
-    \subitem Subroutin-Rücksprungadresse
-    \subitem temporäre Daten
-\end{itemize}
-\begin{minipage}{0.5\linewidth}
-    \includegraphics[width=0.5\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysLIFO}
-\end{minipage}\newline
+\begin{minipage}{\linewidth}
+    \subsubsection{LIFO (Last in First out)}
+        \includegraphics[height=2.5cm]{images/SystembusSpeicherSpeichersystem/SpeicherSysLIFO}
+    \begin{itemize}
+        \item für Stack
+        \subitem Subroutin-Rücksprungadresse
+        \subitem temporäre Daten
+    \end{itemize}
+\end{minipage}
+\end{multicols}
 
 \subsubsection{Assoziativ-Speicher (CAM)}
-\begin{itemize}
-    \item CAM (Content Adressable Memory)
-    \item inhaltsadressierten Speicher
-    \subitem mit einer Teil-Information eins Eintrags, kann der gesamte Informationseintrag gefunden werden
-    \item Für den Zugriff ist keine Adresse notwendig, hingegen kann beim Speichern von Informationen die Auswahl der Speicherstelle über Adressen geschen
-    \item Anwendung
-    \subitem Datenbankabfragen
-    \subitem als Teil einer Cache-Hardware
-    \subitem als Teil einer Adresstransformation
-    \item Nachteile
-    \subitem Mehrfachtreffer sind möglich
-    \subitem Problematische Verwaltung von freien Speicherstellen
-    \subitem Aufwendige Hardware bei Direktzugriffs-CAM
-\end{itemize}
-\begin{minipage}{0.5\linewidth}
-    \includegraphics[width=0.5\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysCAM}
-    \includegraphics[width=0.5\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysCAM1}
-\end{minipage}\newline
+\begin{minipage}{0.7\linewidth}
+    \begin{itemize}
+        \item CAM (Content Adressable Memory)
+        \item inhaltsadressierten Speicher
+        \subitem mit einer Teil-Information eins Eintrags, kann der gesamte Informationseintrag gefunden werden
+        \item Für den Zugriff ist keine Adresse notwendig, hingegen kann beim Speichern von Informationen die Auswahl der Speicherstelle über Adressen geschen
+        \item Anwendung
+        \subitem Datenbankabfragen
+        \subitem als Teil einer Cache-Hardware
+        \subitem als Teil einer Adresstransformation
+        \item Nachteile
+        \subitem Mehrfachtreffer sind möglich
+        \subitem Problematische Verwaltung von freien Speicherstellen
+        \subitem Aufwendige Hardware bei Direktzugriffs-CAM
+    \end{itemize}
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+    \includegraphics[width=\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysCAM}
+    \includegraphics[width=\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysCAM1}
+\end{minipage}
+\renewcommand{\arraystretch}{0.5}
 \begin{tabular}{ll}
    \textbf{CAM}         & ist wie eine Datenbank\\
    \textbf{Valid-Bit}   & Blendet die Zeile ien oder aus\\
    \textbf{Muster}      & Das gesuchte Bit-Muster\\
    \textbf{Maske}       & Wählt die zu suchenden Bits aus\\
    \textbf{Resultat}    & Wenn Valid gesetzt und alle von Mask aktiven Bits übereinstimmen\\
-\end{tabular}
+\end{tabular}\newline
 \textbf{Aufgabe}\newline
 Ein CAM-Speicher enthält 8 Worte zu je 16 Bit's. Beim Zugriff mit dem Muster 0x10C4 ergibt sich der Treffer 0x3834.\newline
 Gesucht ist die verwendete Maske mit der maximalen Anzahl binärer Nullen.\newline
@@ -256,18 +269,22 @@ Gesucht ist die verwendete Maske mit der maximalen Anzahl binärer Nullen.\newli
     &max Anzahl Einer\\
     Maske:  & 1101'0111'0000'1111\\  
 \end{tabular}
+\renewcommand{\arraystretch}{1}
+\newline
 
-\subsubsection{Speichertypen}
+
+\begin{minipage}{\linewidth}
+    \subsubsection{Speichertypen}\vspace{-1.5cm}
+    \includegraphics[width=0.4\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysHalbLeit}
+    \includegraphics[width=0.6\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysHalbLeit1}
+\end{minipage}\newline
+\begin{minipage}{0.5\linewidth}
 \begin{itemize}
     \item Zentraler Speicher
     \subitem direkt am Bussystem des $ \mu C $ angeschlossen
     \item Peripherie Speicher
     \subitem werden über I/O Schnittstellen an $ \mu C $ angeschlossen
 \end{itemize}
-\begin{minipage}{0.5\linewidth}
-    \includegraphics[width=0.5\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysHalbLeit}
-    \includegraphics[width=0.5\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysHalbLeit1}
-\end{minipage}\newline
 
 \textbf{Fram Technology}
 \begin{itemize}
@@ -276,7 +293,8 @@ Gesucht ist die verwendete Maske mit der maximalen Anzahl binärer Nullen.\newli
     \item it's fast and doesn't wear out
     \item When an electric Field is applied to a ferroelectric Crystal, the center Atom moves in the direction of the electic Field
 \end{itemize}
-
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \subsubsection{Fehlersicherung im Speicher}
 \begin{itemize}
     \item Fehler beim Schreiben (Write Soft Error)
@@ -284,11 +302,12 @@ Gesucht ist die verwendete Maske mit der maximalen Anzahl binärer Nullen.\newli
     \item Defekter Speicherbaustein (Hard Error)
     \item Fehler bei der Verarbeitung in der CPU
 \end{itemize}
-\textbf{Hamming-Codierung}\newline
+\textbf{Hamming-Codierung}
 \begin{itemize}
     \item max 2 Fehler erkennbar
     \item  1 Fehler korrigierbar
 \end{itemize}
+\renewcommand{\arraystretch}{0.8}
 \begin{tabular}{|c|c|}
     \hline
     \textbf{Anzahl Datenbits}&\textbf{Anzahl Prüfbits}(Redundanz)\\ \hline
@@ -297,8 +316,12 @@ Gesucht ist die verwendete Maske mit der maximalen Anzahl binärer Nullen.\newli
     48  & 8 \\ \hline
     64  & 8 \\ \hline
 \end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{minipage}
 
-\subsection{Speicher-Hirarchie}
+
+\begin{minipage}{0.5\linewidth}
+    \subsection{Speicher-Hirarchie}
 \subsubsection{Anforderungen}
 \begin{itemize}
     \item hirarchische Organisazion der Bussysteme und Systemspeicher
@@ -307,16 +330,17 @@ Gesucht ist die verwendete Maske mit der maximalen Anzahl binärer Nullen.\newli
     \item Multiprozessorstruktur
     \item Systemkomponenten 
 \end{itemize}
+\end{minipage}
 \begin{minipage}{0.5\linewidth}
-    \includegraphics[width=0.5\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysHierarchie}
+    \includegraphics[width=0.8\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysHierarchie}
 \end{minipage}\newline
 Zwischen L1 \& L2 ist ein Interface zum Hauptspeicher und zu externen Systemkomponenten
 \begin{itemize}
     \item kommuniziert auch mit L2 und In/Outputs
     \item Busbreite häufig das doppelte der Prozessor-Wortbreite
 \end{itemize}
-\begin{minipage}{0.5\linewidth}
-    \includegraphics[width=\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysStrukt}
+\begin{minipage}{\linewidth}
+    \includegraphics[width=0.7\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysStrukt}\centering
 \end{minipage}\newline
 
 \subsubsection{Systembus}
@@ -348,7 +372,7 @@ Der Systembus (auch CPU-, Prozessor- oder Host-Bus gennant) ist der Bus, über d
     \end{minipage}
 \end{multicols}
 
-\subsection{LEistungsmasse unf Anforderungen}
+\subsection{Leistungsmasse unf Anforderungen}
 \subsubsection{Speicherbandbreite}
 Anzahl Bit/Bytes, die in einer Zeiteinheit transferiert werden können.\newline
 \begin{tabular}{cl}

@@ -162,40 +162,43 @@ Neben den funktionalen API-Schnittstellen werden oft auch User Interfaces bereit
 
 
 \subsection{Multitasking}
-
-\subsubsection{Parallelverarbeitung}
 \begin{minipage}{0.5\textwidth}
+    \subsubsection{Parallelverarbeitung}
     Eine Parallelverarbeitung liegt dann vor, wenn verschiedene Programme oder Programmteile gleichzeitig bearbeitet werden. Anwendungsabhängig besteht oft die Notwendigkeit zwischen einzelnen Prozessen Informationen auszutauschen. Diese Art von Prozessen werden als parallele, miteinander kooperierende Prozesse bezeichnet. \\ \\
     \textbf{Quasi-Parallelität:} Verfahren, das erlaubt mehrere Prozesse auf einem Prozessor auszuführen.\\ \\
     \textbf{Nebenläufige Prozesse:} Wird benutzt um die quasi-parallele Ausführung auf einem Einprozessor-System zu bezeichnen\\ \\
-    \textbf{Task:} Alternative Bezeichnung zu Prozess
+    \textbf{Task:} Alternative Bezeichnung zu Prozess \newline
 \end{minipage}
 \hfill
 \begin{minipage}{0.45\textwidth}
     \includegraphics[width=1.0\textwidth]{images/Betriebssysteme/Parallelverarbeitung.png}
 \end{minipage}
 	
-\subsubsection{Parallele Prozesse}
+
 \begin{minipage}{0.5\textwidth}
+    \subsubsection{Parallele Prozesse}
     Im Schichtenmodell können parallele Prozesse auf der Anwendungsebene, der virtuellen Ebene und der physischen Ebene betrachtet werden. Es kann jedoch vorkommen, dass die parallelen Prozesse auf der Anwendungsebene nicht notwendigerweise 1:1 auf die Prozesse der virtuellen Maschine abgebildet werden. \\ \\
     Nebst Anwendungsprozessen gibt es auch dauernd existierende Betriebssystemprozesse im Hintergrund. Man nennt sie Dämonen. 
 \end{minipage}
 \hfill
 \begin{minipage}{0.45\textwidth}
     \includegraphics[width=1.0\textwidth]{images/Betriebssysteme/ProzesseAufVerschEbenen.png}
-\end{minipage} \\ \\ \\
-Je nach Betriebsumgebung werden abweichende Begriffe für Prozesse verwendet (Jobs/Sessions, Prozesse/Tasks, Threads/Stränge/Fäden/Leichtgewichtsprozesse).
+\end{minipage} \\ \\
+Je nach Betriebsumgebung werden abweichende Begriffe für Prozesse verwendet (Jobs/Sessions, Prozesse/Tasks, Threads/Stränge/Fäden/Leichtgewichtsprozesse). \newline
 
+\begin{minipage}{0.5\textwidth}
 \subsubsection{Prozesszustände}
-\begin{multicols}{2}
 \begin{itemize}
     \item Inactive: Formaler Zustand für Prozesse, die noch nicht oder nicht mehr im System existieren
     \item Ready: Der Prozess wartet auf die Zuteilung eines Prozessors (keine weiteren Wartebedingungen). Sind mehrere Prozesse im Ready-Zustand, so entscheidet das Betriebssystem auf Grund seiner Abfertigungsstrategie, welcher in den Running -Zustand wechseln darf. 
     \item Running: Der Prozess hat den Prozessor zugeteilt bekommen und schreitet voran (er läuft).In einem Einprozessor-System kann maximal 1 Prozess in diesem Zustand sein.
     \item Waiting: Der Prozess wartet auf das Erfüllen von (mindestens) einer Wartebedingung.
-\end{itemize} \ \ \ \ \
-\includegraphics[width=0.4\textwidth]{images/Betriebssysteme/Prozesszustaende.png}
-\end{multicols}
+\end{itemize} 
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\includegraphics[width=\textwidth]{images/Betriebssysteme/Prozesszustaende.png}
+\end{minipage}\newline
 Das Betriebssystem verwaltet mehrere Listen:
 \begin{itemize}
     \item ss: Enthält die lauffähigen Prozesse. Es können mehrere ssen vorhanden sein, z.B. eine für jede Prioritätsstufe.
@@ -211,14 +214,19 @@ Das Betriebssystem verwaltet mehrere Listen:
 \end{itemize}
 \textbf{Task Control Block (TCB):}
 Wird die Datenstruktur, in welcher der Kontext der
-Prozesse abgelegt werden kann, bezeichnet.\\\\
+Prozesse abgelegt werden kann, bezeichnet. \newline
+\begin{minipage}{0.7\linewidth}
 Ein \textbf{Prozesswechsel (task switch)} bedeutet:
 \begin{itemize}
     \item Der aktive Prozess gibt den Prozessor entweder freiwillig ab oder er bekommt ihn entzogen. 
     \item Die Auswahl des Prozesses, dem der Prozessor als nächstes zugeteilt wird, erfolgt durch den Scheduler anhand einer vordefinierten Scheduling-Strategie.
     \item Ein Prozesswechsel (wird vom Dispatcher des OS gesteuert) kann i.d.R. nur mittels einer Unterbrechung stattfinden (HW-Unterbrechung/Interrupt oder SW-Unterbrechung/Systemdienstaufruf).
 \end{itemize}
-\includegraphics[width=0.3\textwidth]{images/Betriebssysteme/Prozesswechsel.png} \\\\
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+\includegraphics[width=\textwidth]{images/Betriebssysteme/Prozesswechsel.png}
+\end{minipage}
+
 \textbf{Aktionen im OS bei Context Switch:}
 \begin{enumerate}
     \item Sicherung des gesamten Kontextes des unterbrochenen Prozesses
@@ -227,11 +235,14 @@ Ein \textbf{Prozesswechsel (task switch)} bedeutet:
     \item Änderung des Zustandes des zu aktivierenden Prozesses von \textit{Ready} in \textit{Running}
     \item Wiederherstellung des (gesicherten) Kontextes dieses Prozesses. Durch Laden der Prozessorregister wird dieser Prozess fortgesetzt.
 \end{enumerate}
+\begin{minipage}{0.7\linewidth}
 \textbf{Idle Task:} Der Idle Task besteht meist nur aus einer Warteschleife, so dass er jederzeit
 problemlos verdrängt werden kann. Er wird nur dann aktiv, wenn beim Scheduling kein anderer Prozess laufbereit ist. Ohne den Idle Task müsste innerhalb des Betriebssystem-Kerns gewartet werden
-(busy waiting).\\\\
-\includegraphics[width=0.3\textwidth]{images/Betriebssysteme/IdleTask.png}
-
+(busy waiting).
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+\includegraphics[width=\textwidth]{images/Betriebssysteme/IdleTask.png}
+\end{minipage}
 \subsubsection{Ablaufszenarien}
 \begin{multicols}{2}
 \textbf{Non-Preemptive Scheduling:} Im einfachsten Fall können die Prozesse so lange laufen, bis sie von sich aus den Aktivzustand verlassen und auf ein Ereignis warten, die Kontrolle an andere Prozesse abgeben oder sich selbst beenden. Sie werden nicht vorzeitig unterbrochen!\\\\\\
@@ -295,6 +306,8 @@ Semaphore, deren Zähler aufgrund der Initialisierung und der Verwendung eine "'
 \textbf{Semaphore mit Prioritätenvererbung:} Besitzt ein Task niedriger Priorität (T1) eine Semaphore, so kann es passieren, dass ein Task hoher Priorität (T2) nicht weiterlaufen kann, weil dieser den gleichen Semaphore belegen möchte, dieser aber bereits von T1 belegt ist. Die Priorität des Prozesses T1 wird deshalb temporär auf jene von T2 erhöht (bis die Semaphore-Marke zurückgegeben).\\\\
 \textbf{Vorgehen für die Synchronisation von Prozessabläufen:} Zuerst den Semaphor mit 0 initialisieren. Danach in einem Prozess mit der P-Operation auf eine "'Marke"' warten. Im anderen Prozess mit der V-Operation eine "'Marke"' erzeugen bzw. weitergeben. Bei einer einfachen Synchronisation muss Task1 eventuell auf Task 2 warten, umgekehrt aber nicht (nicht symmetrisch). Bei einer wechselseitigen Synchronisation von mehreren Tasks muss eine zweifache Synchronisation vorgenommen werden, damit nicht einzelne Tasks vorauseilen können. 
 
+\clearpage
+
 \subsubsection{Signale}
 Signale unterscheiden sich in der Regel von Semaphoren dadurch, dass als
 Signalempfänger direkt ein Prozess angegeben wird. Es handelt sich also nicht
@@ -333,8 +346,11 @@ entsprechend ihrer Priorität eingeordnet.\\\\
 \textbf{Client/Server Konzept:} 
 Der Nachrichtenaustausch (message passing) über Mailboxen eignet sich zur Realisierung des "Client/Server-Prinzips". Ein Client beansprucht vom Server eine Dienstleistung und sendet dem Server deshalb eine Meldung. Wenn der Server die notwendigen Arbeiten erledigt hat, liefert er mittels einer Meldung die Antwort an den entsprechenden Client zurück. Da Meldungen von sich aus in der Regel keine Absenderangaben enthalten, muss die Absenderadresse, bzw. die Bezeichnung der Mailbox für die Rückmeldung in der Meldung selbst enthalten sein.\\\\
 \textbf{Pipes:} Pipes, eine Abkürzung für Pipelines, stellen eine besondere Form des Nachrichtenaustauschs dar. Eine Pipe verbindet zwei Prozesse. Pipes leiten Ausgabedaten von Prozessen direkt als Eingabedaten für andere
-Prozesse weiter (Datenstrom), ohne dass man sich um Details kümmern muss. Die Daten werden in der Pipe gepuffert (FIFO-Prinzip). Mit den Pipes werden die beteiligten Prozesse synchronisiert: Der von der Pipe lesende Prozess wartet automatisch, wenn keine Daten mehr in der Pipe liegen. Die Programmierung entspricht dem Arbeiten mit Dateien.\\\\
-\includegraphics[width=0.5\textwidth]{images/Betriebssysteme/Pipe.png}
+Prozesse weiter (Datenstrom), ohne dass man sich um Details kümmern muss. Die Daten werden in der Pipe gepuffert (FIFO-Prinzip). Mit den Pipes werden die beteiligten Prozesse synchronisiert: Der von der Pipe lesende Prozess wartet automatisch, wenn keine Daten mehr in der Pipe liegen. Die Programmierung entspricht dem Arbeiten mit Dateien.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/Betriebssysteme/Pipe.png}
+\end{center}
+
 
 
 \subsection{Deadlock}
@@ -349,10 +365,10 @@ Ein Deadlock ist eine Situation, in welcher mehrere Threads eines Systemes perma
 \end{itemize}
 
 \subsubsection{Beispiele}
-\begin{multicols}{2}
-    \includegraphics[width=0.5\textwidth]{images/Betriebssysteme/deadlock_2.png}
-    \includegraphics[width=0.5\textwidth]{images/Betriebssysteme/deadlock_3.png}
-\end{multicols}
+\begin{minipage}{\linewidth}
+    \includegraphics[width=0.45\textwidth]{images/Betriebssysteme/deadlock_2.png}
+    \includegraphics[width=0.45\textwidth]{images/Betriebssysteme/deadlock_3.png}
+\end{minipage}
 
 \subsubsection{Erkennung von Deadlocks mit einem Prozessfahrplan}
 \includegraphics[width=0.6\textwidth]{images/Betriebssysteme/fahrplan.png} \\
@@ -373,6 +389,7 @@ In einem Prioritäten basierten System werden höher priorisierte Task vor den n
 Situation: Ein hoch priorisierter Task teilt eine Ressource mit einem niedrig priorisierten Task. Der hoch priorisierte Task muss nun warten, bis der niederig priorisierte Task die Ressource freigibt. \\
 \includegraphics[width=0.5\textwidth]{images/Betriebssysteme/bounded_priority.png}
 
+\clearpage
 \subsubsection{Unbounded Priority Inversion}
 Situation: Ein hoch priorisierter Task teilt eine Ressource mit einem niedrig priorisierten Task. Die Zeit, welche der niedrig priorisierte Task die Ressource benötigt, ist bekannt. Es ist nun möglich das ein mittel priorisierter Task den niedrig priorisierten Task unterbricht für eine unbestimmte Zeit, was dazu führt, dass der hoch priorisierte Task eine unendlich lange Zeit warten muss. \\
 \includegraphics[width=0.5\textwidth]{images/Betriebssysteme/unbounded_priority.png}
@@ -413,9 +430,10 @@ Die meisten RTOS beeinhalten folgende Komponenten:
     \item Support für über 30 verschiedene System Architekturen.
     \item Sehr gut portierbar, da der Code hauptsächlich in C geschrieben ist.
 \end{itemize}
-
+\vspace{-0.5cm}
 \subsubsection{Unterstütze Objekte}
 Folgende Objekte werden unterstützt:
+\vspace{-0.5cm}
 \begin{multicols}{2}
     \begin{itemize}
         \item Tasks
@@ -427,10 +445,11 @@ Folgende Objekte werden unterstützt:
         \item Software Timers
     \end{itemize}
 \end{multicols}
+\vspace{-0.5cm}
 RTOS Objekte können dynamisch oder in statisch alloziertem RAM angelegt werden.
-
+\vspace{-0.5cm}
 \subsubsection{Task States}
-\includegraphics[width=0.4\textwidth]{images/Betriebssysteme/freertos_taskstates.png}\\
+\includegraphics[width=0.35\textwidth]{images/Betriebssysteme/freertos_taskstates.png}\\
 \textbf{Beispiel:}
 \lstinputlisting[language=C]{code/freertos_taskmanagement.c}
 
@@ -447,11 +466,13 @@ Queues sind die primäre Form von Kommunikation zwischen Tasks. Nachrichten kön
 \subsubsection{Event Groups}
 Eine Event Gruppe ist ein zusammengehörende Gruppe von Event Bits. Individuelle Event bits in einer Event Gruppe werden über die Bit Nummer angesprochen.
 
+\clearpage
 \subsubsection{Queue Sets}
 Queue Sets stellen einen Mechanismus zur Verfügung, welcher es einem RTOS Task erlaubt aktuelle Lesezugriffe auf mehrere Queues oder Semaphoren gleichzeitig zu blockieren. Ein Queue Set muss explizit erstellt werden. Anschliessend können Queues und Semaphoren zu einem Queue Set hinzugefügt werden. Die Queues und Semaphoren müssen jedoch leer sein beim Zeitpunkt des hinzufügens. \\ \\
 \textbf{Beispiel:}
 \lstinputlisting[language=C]{code/freertos_queueset.c}
 
+\clearpage
 \subsubsection{Software Timer}
 Ein Software Timer erlaubt es eine Funktion zu einer gegebenen Zeit in der Zukunft auszuführen. Die Funktion welche vom Timer ausgeführt wird, heisst Callback Funktion. Die Zeit zwischen dem starten des Timers und dem ausführen der Callback Funktion wird Timer Periode genannt. \\ \\
 \textbf{Beispiel:}\\
