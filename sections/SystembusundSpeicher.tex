@@ -87,7 +87,7 @@ Während des DMA (Direkt Memory Acces) übernimmt ein anderer Bus-Teilnehmer die
         \item Speicher- und Peripheriebausteine
         \subitem RAM, ROM mit verschiedenen Datenbreiten
         \item Adressdecoder und Handshake-Logik
-        \subitem erzeugt Select-Signal,handhabt die zeitliche Abfolge der Hanshake-Signale 
+        \subitem erzeugt Select-Signal, handhabt die zeitliche Abfolge der Hanshake-Signale 
     \end{itemize}
 \end{minipage}
 \begin{minipage}{0.5\linewidth}
@@ -147,7 +147,7 @@ Während des DMA (Direkt Memory Acces) übernimmt ein anderer Bus-Teilnehmer die
 \subsection{Speichersysteme}
 \subsubsection{Direkt adressierbare Speicher}
 \begin{minipage}{0.5\linewidth}
-    Durch anlegen einer Adresse wird direkt die gewünschte Speicherstelle angesprochen.
+    Durch Anlegen einer Adresse wird direkt die gewünschte Speicherstelle angesprochen.
     Die angesprochene Speicherstelle ist meistens 1 Byte gross.\newline
     Es werden 2 Hauptgruppen unterschieden
     \begin{itemize}
@@ -160,7 +160,7 @@ Während des DMA (Direkt Memory Acces) übernimmt ein anderer Bus-Teilnehmer die
 \end{minipage}\newline
 
 \textbf{Prüfungsfrage}\newline
-Weshalb wird bei einem Bit-Organisierten Speicher bei gleichzeitigem Lesn (OE oder RD) und Schreiben (WR) aktiv, schreiben priorisiert?\newline
+Weshalb wird bei einem Bit-Organisierten Speicher bei gleichzeitigem Lesen (OE oder RD) und Schreiben (WR) aktiv, schreiben priorisiert?\newline
 Weil schreiben hochohmig bedeutet.
 \begin{minipage}{0.5\linewidth}
     \includegraphics[width=0.5\textwidth]{images/SystembusSpeicherSpeichersystem/SpeicherSysDirectMemPrue}
@@ -169,7 +169,7 @@ Weil schreiben hochohmig bedeutet.
 \subsubsection{Mehrpoert Speicher}
 \begin{itemize}
     \item Schreib-/Lesespeicher mit mehreren Zugriffspfaden (Bus-Ports)
-    \item Verwendet wenn mehr als ein aktives Verarbetungselement gleichzeitig auf Speicherzellen zugreiffen wollen
+    \item Verwendet wenn mehr als ein aktives Verarbeitungselement gleichzeitig auf Speicherzellen zugreiffen wollen
     \item uni oder bidirektional
 \end{itemize}
 \begin{minipage}{0.5\linewidth}
@@ -203,7 +203,7 @@ Weil schreiben hochohmig bedeutet.
         \subitem A/D-Wandler
         \subitem Lan-Schnittstelle
         \subitem Peripheriebuse (USB)
-        \subitem serielle Schnittstelle (RS-232,SPI)
+        \subitem \mbox{serielle Schnittstelle (RS-232,SPI)}
         \item Links/Rechtsschieben
     \end{itemize}
 \end{minipage}
@@ -213,7 +213,7 @@ Weil schreiben hochohmig bedeutet.
     \includegraphics[height=2.5cm]{images/SystembusSpeicherSpeichersystem/SpeicherSysFIFO}
     \begin{itemize}
         \item Ein-/Ausgabebuffer
-        \subitem Tastatur,Drucker,Lan-Schnittstelle
+        \subitem Tastatur, Drucker, Lan-Schnittstelle
         \subitem Ringbuffer
     \end{itemize}
 \end{minipage}
@@ -253,7 +253,7 @@ Weil schreiben hochohmig bedeutet.
 \renewcommand{\arraystretch}{0.5}
 \begin{tabular}{ll}
    \textbf{CAM}         & ist wie eine Datenbank\\
-   \textbf{Valid-Bit}   & Blendet die Zeile ien oder aus\\
+   \textbf{Valid-Bit}   & Blendet die Zeile ein oder aus\\
    \textbf{Muster}      & Das gesuchte Bit-Muster\\
    \textbf{Maske}       & Wählt die zu suchenden Bits aus\\
    \textbf{Resultat}    & Wenn Valid gesetzt und alle von Mask aktiven Bits übereinstimmen\\

@@ -304,7 +304,7 @@ Bei einem Aufruf der P-Operation (vor Eintritt in den kritischen Bereich) wird d
 \textbf{Binäre Semaphore vs. Zählende Semaphore:}
 Semaphore, deren Zähler aufgrund der Initialisierung und der Verwendung eine "'1"' als grössten positiven Wert annehmen können, werden oftmals auch binäre Semaphore bzw. Mutex locks bezeichnet. Semaphore, deren Zähler grössere positive Werte als "'1"' annehmen können, werden zählende Semaphore genannt.\\\\
 \textbf{Semaphore mit Prioritätenvererbung:} Besitzt ein Task niedriger Priorität (T1) eine Semaphore, so kann es passieren, dass ein Task hoher Priorität (T2) nicht weiterlaufen kann, weil dieser den gleichen Semaphore belegen möchte, dieser aber bereits von T1 belegt ist. Die Priorität des Prozesses T1 wird deshalb temporär auf jene von T2 erhöht (bis die Semaphore-Marke zurückgegeben).\\\\
-\textbf{Vorgehen für die Synchronisation von Prozessabläufen:} Zuerst den Semaphor mit 0 initialisieren. Danach in einem Prozess mit der P-Operation auf eine "'Marke"' warten. Im anderen Prozess mit der V-Operation eine "'Marke"' erzeugen bzw. weitergeben. Bei einer einfachen Synchronisation muss Task1 eventuell auf Task 2 warten, umgekehrt aber nicht (nicht symmetrisch). Bei einer wechselseitigen Synchronisation von mehreren Tasks muss eine zweifache Synchronisation vorgenommen werden, damit nicht einzelne Tasks vorauseilen können. 
+\textbf{Vorgehen für die Synchronisation von Prozessabläufen:} Zuerst den Semaphor mit 0 initialisieren. Danach in einem Prozess mit der P-Operation auf eine "`Marke"' warten. Im anderen Prozess mit der V-Operation eine "`Marke"' erzeugen bzw. weitergeben. Bei einer einfachen Synchronisation muss Task1 eventuell auf Task 2 warten, umgekehrt aber nicht (nicht symmetrisch). Bei einer wechselseitigen Synchronisation von mehreren Tasks muss eine zweifache Synchronisation vorgenommen werden, damit nicht einzelne Tasks vorauseilen können. 
 
 \clearpage
 
@@ -314,20 +314,20 @@ Signalempfänger direkt ein Prozess angegeben wird. Es handelt sich also nicht
 um eigenständige Betriebssystemobjekte, sondern um eine Möglichkeit, irgendwelche
 Prozesse anzustossen. Signale können vom Betriebssystem oder von einem Anwenderprozess an einen anderen Prozess gesendet werden.\\\\
 \textbf{Signal senden:} Ein Prozess verschickt ein Signal, indem er die Betriebssystemfunktion
-"send signal" mit der Identifikation des Empfängerprozesses aufruft.\\\\
-\textbf{Signal senden:} Ein Prozess empfängt ein Signal, indem er die Betriebssystemfunktion "receive signal" aufruft. Wurde bereits ein Signal gesendet, so kann er sofort
-weiterlaufen. Andernfalls wird er solange in den Zustand "wartend" versetzt, bis ein Signal eintrifft.\\\\
+"`send signal"' mit der Identifikation des Empfängerprozesses aufruft.\\\\
+\textbf{Signal empfangen:} Ein Prozess empfängt ein Signal, indem er die Betriebssystemfunktion "`receive signal"' aufruft. Wurde bereits ein Signal gesendet, so kann er sofort
+weiterlaufen. Andernfalls wird er solange in den Zustand "`wartend"' versetzt, bis ein Signal eintrifft.\\\\
 Üblicherweise kann für einen bestimmten Prozess genau 0 oder 1 Signal
 gespeichert werden (vgl. binärer Semaphor).
 
 
 
 \subsubsection{Weiterführende Konzepte}
-\begin{minipage}{0.5\textwidth}
-    \includegraphics[width=0.8\textwidth]{images/Betriebssysteme/KonzepteInterprozesskommunikation.png}
+\begin{minipage}{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/Betriebssysteme/KonzepteInterprozesskommunikation.png}
 \end{minipage}
 \hfill
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.6\textwidth}
     Jedes dieser Konzepte weist bezüglich einer bestimmten Problemklasse seine Vorzüge auf. Wesentlich ist jedoch, dass alle Konzepte funktional äquivalent sind, d.h. jedes Konzept kann in seiner Wirkungsweise durch jedes andere nachgebildet werden.
 \end{minipage}
 
@@ -339,12 +339,12 @@ der Mailbox festgelegt).
 \textbf{Message:} Variable Meldungslänge; die Maximallänge wird beim Erzeugen der Mailbox
 festgelegt. Es befindet sich kein Absender auf dem Umschlag. Jeder Prozess kann aus jeder Mailbox eine Meldung holen.\\\\
 \textbf{Senden einer Meldung:}
-Wenn der Empfänger wartet, dann wird die Nachricht direkt an ihn weitergereicht. Der Empfängerprozess wechselt damit vom Zustand '"wartend'" in den Zustand '"bereit'". Wenn kein Empfänger wartet, dann wird die Nachricht in der Mailbox abgelegt. Ist die Mailbox bereits voll (maximale Anzahl an Meldungen gespeichert),
+Wenn der Empfänger wartet, dann wird die Nachricht direkt an ihn weitergereicht. Der Empfängerprozess wechselt damit vom Zustand "`wartend"' in den Zustand "`bereit"'. Wenn kein Empfänger wartet, dann wird die Nachricht in der Mailbox abgelegt. Ist die Mailbox bereits voll (maximale Anzahl an Meldungen gespeichert),
 so muss der sendende Prozess auf das Ablegen warten. Dieses Warten kann je nach Betriebssystem mit einer Zeitlimite (timeout) belegt werden. Unterstützt das Betriebssystem Meldungsprioritäten, so wird die Meldung
 entsprechend ihrer Priorität eingeordnet.\\\\
 \textbf{Empfangen einer Meldung:} Wenn keine Meldung in der Mailbox bereit liegt, so muss der Prozess warten. Dieses Warten kann je nach Betriebssystem mit einer Zeitlimite (timeout) belegt werden. Der blockierte Prozess kommt je nach den unterstützten Möglichkeiten entweder an das Ende der Warteschlange (FIFO-Verfahren) oder wird entsprechend seiner Priorität (Prioritäts-verfahren) in die Warteschlange eingereiht.\\\\
 \textbf{Client/Server Konzept:} 
-Der Nachrichtenaustausch (message passing) über Mailboxen eignet sich zur Realisierung des "Client/Server-Prinzips". Ein Client beansprucht vom Server eine Dienstleistung und sendet dem Server deshalb eine Meldung. Wenn der Server die notwendigen Arbeiten erledigt hat, liefert er mittels einer Meldung die Antwort an den entsprechenden Client zurück. Da Meldungen von sich aus in der Regel keine Absenderangaben enthalten, muss die Absenderadresse, bzw. die Bezeichnung der Mailbox für die Rückmeldung in der Meldung selbst enthalten sein.\\\\
+Der Nachrichtenaustausch (message passing) über Mailboxen eignet sich zur Realisierung des "`Client/Server-Prinzips"'. Ein Client beansprucht vom Server eine Dienstleistung und sendet dem Server deshalb eine Meldung. Wenn der Server die notwendigen Arbeiten erledigt hat, liefert er mittels einer Meldung die Antwort an den entsprechenden Client zurück. Da Meldungen von sich aus in der Regel keine Absenderangaben enthalten, muss die Absenderadresse, bzw. die Bezeichnung der Mailbox für die Rückmeldung in der Meldung selbst enthalten sein.\\\\
 \textbf{Pipes:} Pipes, eine Abkürzung für Pipelines, stellen eine besondere Form des Nachrichtenaustauschs dar. Eine Pipe verbindet zwei Prozesse. Pipes leiten Ausgabedaten von Prozessen direkt als Eingabedaten für andere
 Prozesse weiter (Datenstrom), ohne dass man sich um Details kümmern muss. Die Daten werden in der Pipe gepuffert (FIFO-Prinzip). Mit den Pipes werden die beteiligten Prozesse synchronisiert: Der von der Pipe lesende Prozess wartet automatisch, wenn keine Daten mehr in der Pipe liegen. Die Programmierung entspricht dem Arbeiten mit Dateien.
 \begin{center}

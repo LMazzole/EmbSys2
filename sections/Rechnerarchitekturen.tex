@@ -33,7 +33,7 @@ Dabei unterscheidet man zwischen dem \textbf{Operationsprinzip} (funktionelles V
 	
 	\begin{minipage}{0.45\textwidth}		
 		\begin{enumerate}[noitemsep,topsep=0pt]
-			\item Wie viele Instruktionen werden gleichzeitig ausgeführt: Anzahl Datenströme und bearbeitete Befehle (SI: Single Instruction, MI: Multi Instruction, SD: Single Data, MD Mul)?
+			\item Wie viele Instruktionen werden gleichzeitig ausgeführt: Anzahl Datenströme und bearbeitete Befehle (SI: Single Instruction, MI: Multi Instruction, SD: Single Data, MD Multi Data)?
 			
 			\item Wie viele Datenwerte verarbeitet eine Instruktion?
 		\end{enumerate}	
@@ -134,14 +134,14 @@ Wenn der Prozessor $5$ der $8$ RISC-Merkmalen erfüllt, kann man sagen, dass es 
 
 \subsection{Pipeline-Architekturen}
 %{\large{\textbf{Pipeline-Architekturen}}}\\
-Die Grundidee einer Pipeline-Architektur ist die, dass die verschiedenen Bearbeitungspahsen so gewählt werden, dass pro Phase etwa die gleiche Zeit benötigt wird.
-Die Ausführungs eines Befehls dauert mehrere Taktzyklen, dafür werden mehrere Befehle gleichzeitig ausgeführt.
+Die Grundidee einer Pipeline-Architektur ist die, dass die verschiedenen Bearbeitungsphasen so gewählt werden, dass pro Phase etwa die gleiche Zeit benötigt wird.
+Die Ausführung eines Befehls dauert mehrere Taktzyklen, dafür werden mehrere Befehle gleichzeitig ausgeführt.
 Bei jedem Takt wird somit ein Befehl abgeschlossen.
 Die Anzahl Pipline-Stufen variieren je nach Prozessortyp, oftmals sind es die fünf Phasen: Fetch, Decode, Execute, Memory Access (Zugriff auf Register) und Write Back (Resultat in Speicher schreiben).
 \begin{figure}[htbp]
 	
 	\begin{minipage}{0.5\textwidth}
-		Die Befehlsdaten werden zwischen den einzelnen Befehlsphasen in Pipelineregistern zwischengespeichert. Sie sind füd den Nutzer nicht sichtbar und gelten als limitierenden Faktor bezüglich der Geschwindigkeit		
+		Die Befehlsdaten werden zwischen den einzelnen Befehlsphasen in Pipelineregistern zwischengespeichert. Sie sind für den Nutzer nicht sichtbar und gelten als limitierenden Faktor bezüglich der Geschwindigkeit.		
 		
 	\end{minipage}
 	\hfill		
@@ -151,6 +151,7 @@ Die Anzahl Pipline-Stufen variieren je nach Prozessortyp, oftmals sind es die f�
 	
 \end{figure}
 \vspace{-0.5cm}
+\newline
 Die Geschwindigkeit wird durch folgende Punkte limittiert:
 \begin{itemize}[noitemsep,topsep=0pt]
 	\item Buszugriffzeiten
@@ -170,7 +171,7 @@ Die Geschwindigkeit wird durch folgende Punkte limittiert:
 \end{itemize}
 
 \textbf{Pipeline Stall:}\\
-Es resultiert ein Pipeline Stall wenn ein nachfolgebefehl das Resultat vom vorgängigen Befehl benötigt, dieser das Resultat jedoch noch nicht fertig berechnet hat
+Es resultiert ein Pipeline Stall wenn ein nachfolgebefehl das Resultat vom vorgängigen Befehl benötigt, dieser das Resultat jedoch noch nicht fertig berechnet hat.
 
 \textbf{Data-Forwarding:}\\
 Resultate werden einer nachfolgenden Pipelinestufe direkt bereitgestellt, noch bevor diese an die endgültige Stelle geschrieben werden.
@@ -233,7 +234,7 @@ VLIW Prozessoren können als Variation der superskalaren Prozessoren gesehen wer
 	
 	\begin{minipage}{0.55\textwidth}
 		\begin{itemize}[noitemsep,topsep=0pt]
-			\item Mehrere Mschinenbefehle werden in einem Instruktionswort gespeichert.
+			\item Mehrere Maschinenbefehle werden in einem Instruktionswort gespeichert.
 			\item Compiler nimmt mehrere Befehle und setzt sie zu einem grossen Befehl zusammen. Befehl kann effizienter abgearbeitet werden.
 			
 		\end{itemize}
